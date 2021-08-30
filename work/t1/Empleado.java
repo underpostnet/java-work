@@ -1,16 +1,15 @@
 
-package Tarea1;
 
 public class Empleado
 {
-
+  
     private int salary;
     private String name;
     private String company;
 
     public Empleado(
-        int salary,
-        String name,
+        int salary, 
+        String name, 
         String company )
     {
         this.salary = salary;
@@ -21,10 +20,5 @@ public class Empleado
     public int getSalary()
     {
         return salary;
-    }
-
-    public String getName()
-    {
-        return name;
     }
 }

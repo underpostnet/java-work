@@ -11,9 +11,10 @@ public class Tarea1 {
 
           System.out.println("UNDERpost.net");
 
-          Empleado test = new Empleado(100);
+          Empleado test = new Empleado(100, "fco", "underpost.net");
 
           System.out.println(test.getSalary());
+          System.out.println(test.getName());
 
   }
 
