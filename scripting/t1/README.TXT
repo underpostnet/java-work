@@ -31,3 +31,6 @@ commands:
 1° -> javac -d . Empleado.java
 
 2° -> javac -d . Tarea1.java
+
+
+@echo off -> del commands line log
