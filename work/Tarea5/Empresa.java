@@ -1,5 +1,5 @@
 
-package Tarea5;
+ 
 
 public class Empresa
 {
@@ -7,7 +7,8 @@ public class Empresa
   protected String nombreEmpresa = "underpost.net";
 
   public void view() {
-    System.out.println("nombre Empresa:"+this.nombreEmpresa);
+    System.out.println("nombre empresa:"+this.nombreEmpresa);
   }
 
 }
+

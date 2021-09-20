@@ -2,7 +2,7 @@
 
 
 
-public class Empleado
+public class Empleado extends Empresa
 {
 
   private String nombre;
@@ -52,6 +52,7 @@ public class Empleado
     System.out.println("apellido:"+this.apellido);
     System.out.println("sueldo:"+this.sueldo);
     System.out.println("edad:"+this.edad);
+    super.view();
   }
   
   

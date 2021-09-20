@@ -1,1 +1,4 @@
-// extends Empresa
+class [name] extends [parent]
+
+
+this -> super
