@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Vivienda
+comment1.params=direccion\ superficie
+comment1.target=Vivienda(java.lang.String,\ double)
+comment2.params=
+comment2.target=java.lang.String\ getDireccion()
+comment3.params=
+comment3.target=double\ getSuperfice()
+numComments=4

@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Departamento
+comment1.params=gastoComunMensual\ nPiso\ direccion\ superficie
+comment1.target=Departamento(double,\ int,\ java.lang.String,\ double)
+comment2.params=
+comment2.target=int\ getNumeroPiso()
+comment3.params=
+comment3.target=double\ getGastoComunMensual()
+numComments=4
