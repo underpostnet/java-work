@@ -9,13 +9,20 @@ public class Bus {
 
   static int asientosDisponibles = 40;
   private String destino;
-  private double fecha;
+  private long fecha;
 
-  public Bus(double fecha, String destino){
+  public Bus(long fecha, String destino){
 
     this.fecha = fecha;
     this.destino = destino;
 
+  }
+
+  public String getDestino(){
+    return this.destino;
+  }
+  public long getFecha(){
+    return this.fecha;
   }
 
 
