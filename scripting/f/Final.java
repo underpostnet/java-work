@@ -12,6 +12,9 @@ public class Final {
 
   public static void main(String[] args){
 
+      System.out.println(" \n \n Generar Instancias -> \n");
+      System.out.println(" -------------------------------------------- \n");
+
       String testDestinos[] = {
         "Concepcion",
         "Valdivia",
@@ -36,19 +39,24 @@ public class Final {
       testClientes.add(new Cliente("19.644.566-2", "Ayleen", 7));
       testClientes.add(new Cliente("15.634.166-2", "Jose", 66));
 
-      long fechaPasaje = (new Date().getTime()+(10*60*60*24*1000));
-      
-      empresa.reservarPasaje(
+      long limiteFechaPasaje = (new Date().getTime()+(10*60*60*24*1000));
+
+      Pasaje testA = empresa.reservarPasaje(
           testClientes,
           "Puerto Montt",
-          fechaPasaje // en menos de 10 dias
+          limiteFechaPasaje // en menos de 10 dias
       );
 
-      empresa.reservarPasaje(
+      Pasaje testB = empresa.reservarPasaje(
           testClientes,
           "Puerto Montt",
-          fechaPasaje // en menos de 10 dias
+          limiteFechaPasaje // en menos de 10 dias
       );
+
+      empresa.pagarPasaje(testA);
+      empresa.pagarPasaje(testA);
+
+      empresa.ViewPasajesEmitidos();
 
 
   }

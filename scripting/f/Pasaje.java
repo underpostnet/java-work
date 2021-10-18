@@ -33,4 +33,16 @@ public class Pasaje {
     return this.clientes;
   }
 
+  public void pagarPasaje(){
+    this.cancelado = true;
+  }
+
+  public boolean getEstadoPago(){
+    return this.cancelado;
+  }
+
+  public double getTarifa(){
+    return this.tarifa;
+  }
+
 }

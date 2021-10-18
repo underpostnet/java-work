@@ -42,7 +42,7 @@ public class Empresa {
 
   }
 
-  public void reservarPasaje(ArrayList<Cliente> clientes, String destino, long fechaLimite){
+  public Pasaje reservarPasaje(ArrayList<Cliente> clientes, String destino, long fechaLimite){
 
     boolean busDisponible = false;
     for (Bus bus : this.busesDisponibles) {
@@ -66,7 +66,7 @@ public class Empresa {
 
 
         if(!this.validarCantidadPasajes(clientes, bus)){
-          return;
+          return null;
         }
 
 
@@ -96,23 +96,27 @@ public class Empresa {
         System.out.println(" Tarifa Total \n");
         System.out.println(" "+ tarifaTotal + "\n");
 
-        this.pasajesEmitidos.add(
-          new Pasaje(
-            tarifaTotal,
-            bus,
-            clientes
-          )
+        Pasaje nuevoPasaje  = new Pasaje(
+          tarifaTotal,
+          bus,
+          clientes
         );
 
-        // bus sumar asientos
+        this.pasajesEmitidos.add(nuevoPasaje);
 
-        break;
+        bus.sumarAsientos(clientes.size());
+
+        return nuevoPasaje;
+
       }
+
     }
 
     if(!busDisponible){
       System.out.println(" No hay buses antes de la fecha o destino solicitado \n");
     }
+
+    return null;
 
 
   }
@@ -154,6 +158,107 @@ public class Empresa {
 
       return true;
 
+    }
+
+    public Pasaje pagarPasaje(Pasaje pasaje){
+
+
+          /*
+
+          • La reserva debe ser pagada con un mínimo de 24 horas de antelación al viaje.
+          • Las reservas no pagadas, en el tiempo descrito en el punto 4, serán anuladas de manera
+          automática.
+          • Una vez pagada la reserva se emite el pasaje con el nombre del cliente y acompañantes.
+
+          */
+          int indexPasaje = 0;
+          for (Pasaje pasajeEmitido : this.pasajesEmitidos) {
+
+            if(
+              pasajeEmitido.getBus().getFecha()==pasaje.getBus().getFecha()
+              &&
+              pasajeEmitido.getBus().getDestino()==pasaje.getBus().getDestino()
+            ){
+
+                      if(pasajeEmitido.getBus().getFecha()>=(new Date().getTime()+(60*60*24*1000*2))){
+
+                        for (Cliente clientePasajeTest : pasaje.getClientes() ) {
+                          boolean rutExiste = false;
+                          for (Cliente clientePasajeEmitido :  pasajeEmitido.getClientes() ) {
+                            if(clientePasajeEmitido.getRut()==clientePasajeTest.getRut()){
+                              rutExiste = true;
+                            }
+                          }
+                          if(!rutExiste){
+                            System.out.println(" Cliente no valido \n");
+                            return null;
+                          }
+
+                        }
+
+                        boolean estadoPago = pasajeEmitido.getEstadoPago();
+
+                        if(!estadoPago){
+
+                          pasajeEmitido.pagarPasaje();
+                          System.out.println(" Pasaje Pagado Con exito \n");
+                          return pasajeEmitido;
+
+                        }else{
+
+                          System.out.println(" El pasaje ya ha sido pagado \n");
+                          return null;
+
+                        }
+
+                      }else{
+
+                        System.out.println(" Fecha de pago no valida \n");
+
+                        this.pasajesEmitidos.remove(indexPasaje);
+
+                        return null;
+
+                      }
+
+            }
+            indexPasaje++;
+          }
+
+          System.out.print(" Bus del pasaje no encontrado \n");
+          return null;
+
+
+    }
+
+
+    public void ViewPasajesEmitidos(){
+      String pattern = "dd/MM/yyyy HH:mm:ss";
+      SimpleDateFormat df = new SimpleDateFormat(pattern);
+
+      System.out.println(" \n \n Test ViewPasajesEmitidos() -> \n");
+      System.out.println(" -------------------------------------------- \n");
+
+      int indexPasaje = 0;
+      for (Pasaje pasajeEmitido : this.pasajesEmitidos) {
+
+            System.out.println(" Pasaje Numero "+indexPasaje+" \n");
+            System.out.println(" Fecha: "+df.format(pasajeEmitido.getBus().getFecha())+" \n");
+            System.out.println(" Destino: "+pasajeEmitido.getBus().getDestino()+" \n");
+            System.out.println(" Pagado: "+pasajeEmitido.getEstadoPago()+" \n");
+            double tarifa = pasajeEmitido.getTarifa();
+            System.out.println(" Tarifa Total: "+tarifa+" \n");
+            System.out.println(" Clientes: \n");
+
+            ArrayList<Cliente> clientes = pasajeEmitido.getClientes();
+
+            for (Cliente cliente : clientes) {
+              String nombreCliente = cliente.getNombre();
+              String rutCliente = cliente.getRut();
+              System.out.println("           Nombre : "+nombreCliente+" RUT: "+rutCliente+" \n");
+            }
+      }
+      indexPasaje++;
     }
 
 

@@ -34,5 +34,14 @@ public class Bus {
     return (this.asientosTotales-this.asientosOcupados);
   }
 
+  public void sumarAsientos(int cantidad){
+    if((this.asientosOcupados+cantidad)<=this.asientosTotales){
+      this.asientosOcupados+=cantidad;
+      System.out.println(" Asientos ocupados "+this.asientosOcupados+ "\n");
+    } else{
+      System.out.println(" No hay asientos disponibles"+ "\n");
+    }
+  }
+
 
 }
