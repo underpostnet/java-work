@@ -14,6 +14,7 @@ public class Empresa {
   private String nombreEmpresa;
   private String destinos[];
   private double tarifaNormal = 1000.0;
+  private int limiteReservasPorCliente = 5;
 
   // buses diponibles
   private ArrayList<Bus> busesDisponibles = new ArrayList<Bus>();
@@ -60,6 +61,17 @@ public class Empresa {
       (bus.getAsientosDisponibles()>=clientes.size())
       // hasta 5 pasajes
       ){
+
+
+
+
+        if(!this.validarCantidadPasajes(clientes, bus)){
+          return;
+        }
+
+
+
+
         System.out.println(" Bus Disponible \n");
         busDisponible = true;
         double tarifaTotal = 0;
@@ -92,6 +104,8 @@ public class Empresa {
           )
         );
 
+        // bus sumar asientos
+
         break;
       }
     }
@@ -102,6 +116,45 @@ public class Empresa {
 
 
   }
+
+
+
+    public boolean validarCantidadPasajes(ArrayList<Cliente> clientes, Bus bus){
+
+      for (Cliente cliente : clientes) {
+            int contPasajes = 0;
+            for (Pasaje pasaje : this.pasajesEmitidos) {
+
+                    if(pasaje.getBus().getFecha()>=new Date().getTime()){
+                      ArrayList<Cliente> pasajesList = pasaje.getClientes();
+                      for (Cliente clientePasaje :  pasajesList ) {
+
+                                if(clientePasaje.getRut()==cliente.getRut()){
+
+                                  if(pasaje.getBus().getFecha()==bus.getFecha()
+                                    &&
+                                    pasaje.getBus().getDestino()==bus.getDestino()){
+                                      System.out.println(" Pasajero ya reservo el Bus \n");
+                                      return false;
+                                  }
+                                  contPasajes++;
+
+                                }
+
+                      }
+
+                    }
+            }
+
+            if(contPasajes>=this.limiteReservasPorCliente){
+              System.out.println(" Pasajero supera limite de reservas \n");
+              return false;
+            }
+      }
+
+      return true;
+
+    }
 
 
 }

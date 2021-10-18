@@ -36,10 +36,18 @@ public class Final {
       testClientes.add(new Cliente("19.644.566-2", "Ayleen", 7));
       testClientes.add(new Cliente("15.634.166-2", "Jose", 66));
 
+      long fechaPasaje = (new Date().getTime()+(10*60*60*24*1000));
+      
       empresa.reservarPasaje(
           testClientes,
           "Puerto Montt",
-          (new Date().getTime()+(10*60*60*24*1000)) // en menos de 10 dias
+          fechaPasaje // en menos de 10 dias
+      );
+
+      empresa.reservarPasaje(
+          testClientes,
+          "Puerto Montt",
+          fechaPasaje // en menos de 10 dias
       );
 
 

@@ -25,5 +25,9 @@ public class Cliente {
     return this.edad;
   }
 
+  public String getRut(){
+    return this.rut;
+  }
+
 
 }

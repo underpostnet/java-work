@@ -25,4 +25,12 @@ public class Pasaje {
 
   }
 
+  public Bus getBus(){
+    return this.bus;
+  }
+
+  public ArrayList<Cliente> getClientes(){
+    return this.clientes;
+  }
+
 }
