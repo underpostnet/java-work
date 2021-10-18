@@ -5,20 +5,23 @@ package Final;
 
 import Final.*;
 
+import java.util.*;
+import java.util.ArrayList;
+
+
 public class Pasaje {
 
   private double tarifa;
   private boolean cancelado;
   private Bus bus;
-  private int[] acompanantes; // indice de los pasajes acompañantes
-  private Cliente cliente;
+  private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
-  public Pasaje(double tarifa, Bus bus, int[] acompanantes, Cliente cliente){
+  public Pasaje(double tarifa, Bus bus, ArrayList<Cliente> clientes){
 
     this.cancelado = false;
     this.tarifa = tarifa;
     this.bus = bus;
-    this.cliente = cliente;
+    this.clientes = clientes;
 
   }
 

@@ -5,13 +5,24 @@ package Final;
 
 import Final.*;
 
+import java.util.*;
+import java.util.ArrayList;
+
+
 public class Cliente {
 
-  private String Rut;
+  private String rut;
   private String nombre;
+  private int edad;
 
-  public Cliente(){
+  public Cliente(String Rut, String nombre, int edad){
+    this.rut = rut;
+    this.nombre = nombre;
+    this.edad = edad;
+  }
 
+  public int getEdad(){
+    return this.edad;
   }
 
 

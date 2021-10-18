@@ -5,9 +5,13 @@ package Final;
 
 import Final.*;
 
+import java.util.*;
+import java.util.ArrayList;
+
 public class Bus {
 
-  static int asientosDisponibles = 40;
+  private int asientosTotales = 40;
+  private int asientosOcupados = 0;
   private String destino;
   private long fecha;
 
@@ -23,6 +27,11 @@ public class Bus {
   }
   public long getFecha(){
     return this.fecha;
+  }
+
+
+  public int getAsientosDisponibles(){
+    return (this.asientosTotales-this.asientosOcupados);
   }
 
 

@@ -4,20 +4,11 @@
 package Final;
 
 import Final.*;
-import java.util.Date;
+
+import java.util.*;
+import java.util.ArrayList;
 
 public class Final {
-
-  /*
-
-  String
-  double
-  int
-  boolean isJavaFun = true;
-
-  status class arr[];
-
-  */
 
   public static void main(String[] args){
 
@@ -32,9 +23,24 @@ public class Final {
 
       Empresa empresa = new Empresa("Buses Chile", testDestinos);
 
-      empresa.agregarBusDisponible(new Bus(
-            new Date().getTime(), "Puerto Montt"
-      ));
+      empresa.agregarBusDisponible(
+        new Bus(
+          (new Date().getTime()+(3*60*60*24*1000)), // en 3 dias
+          "Puerto Montt"
+        )
+      );
+
+
+      ArrayList<Cliente> testClientes = new ArrayList<Cliente>();
+      testClientes.add(new Cliente("18.934.986-7", "Francisco", 26));
+      testClientes.add(new Cliente("19.644.566-2", "Ayleen", 7));
+      testClientes.add(new Cliente("15.634.166-2", "Jose", 66));
+
+      empresa.reservarPasaje(
+          testClientes,
+          "Puerto Montt",
+          (new Date().getTime()+(10*60*60*24*1000)) // en menos de 10 dias
+      );
 
 
   }
