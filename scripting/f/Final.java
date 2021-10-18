@@ -39,18 +39,18 @@ public class Final {
       testClientes.add(new Cliente("19.644.566-2", "Ayleen", 7));
       testClientes.add(new Cliente("15.634.166-2", "Jose", 66));
 
-      long limiteFechaPasaje = (new Date().getTime()+(10*60*60*24*1000));
+      long limiteFechaPasaje = (new Date().getTime()+(10*60*60*24*1000)); // en menos de 10 dias
 
       Pasaje testA = empresa.reservarPasaje(
           testClientes,
           "Puerto Montt",
-          limiteFechaPasaje // en menos de 10 dias
+          limiteFechaPasaje
       );
 
       Pasaje testB = empresa.reservarPasaje(
           testClientes,
           "Puerto Montt",
-          limiteFechaPasaje // en menos de 10 dias
+          limiteFechaPasaje 
       );
 
       empresa.pagarPasaje(testA);

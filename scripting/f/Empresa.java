@@ -56,10 +56,14 @@ public class Empresa {
       &&
       (bus.getFecha() <= fechaLimite)
       &&
+      // El cliente solo puede reservar pasajes para fechas posteriores a 48 horas, es decir, si la
+      // reserva la hace un día lunes, el pasaje puede ser para el día miércoles en adelante
       (bus.getFecha() >= (new Date().getTime()+(1000*60*60*24*2)))
       &&
+      // Los buses tienen capacidad de 40 asientos,
+      // no se pueden vender más de 40 asientos por cada Bus
       (bus.getAsientosDisponibles()>=clientes.size())
-      // hasta 5 pasajes
+
       ){
 
 
@@ -125,6 +129,13 @@ public class Empresa {
 
     public boolean validarCantidadPasajes(ArrayList<Cliente> clientes, Bus bus){
 
+      /*
+
+      Todo cliente debe presentar identificación (RUT)
+      para acceder a la reserva y compra de pasajes.
+
+      */
+
       for (Cliente cliente : clientes) {
             int contPasajes = 0;
             for (Pasaje pasaje : this.pasajesEmitidos) {
@@ -162,15 +173,6 @@ public class Empresa {
 
     public Pasaje pagarPasaje(Pasaje pasaje){
 
-
-          /*
-
-          • La reserva debe ser pagada con un mínimo de 24 horas de antelación al viaje.
-          • Las reservas no pagadas, en el tiempo descrito en el punto 4, serán anuladas de manera
-          automática.
-          • Una vez pagada la reserva se emite el pasaje con el nombre del cliente y acompañantes.
-
-          */
           int indexPasaje = 0;
           for (Pasaje pasajeEmitido : this.pasajesEmitidos) {
 
@@ -179,10 +181,16 @@ public class Empresa {
               &&
               pasajeEmitido.getBus().getDestino()==pasaje.getBus().getDestino()
             ){
-
-                      if(pasajeEmitido.getBus().getFecha()>=(new Date().getTime()+(60*60*24*1000*2))){
+                      //   • La reserva debe ser pagada con un mínimo de 24 horas de antelación al viaje.
+                      if(pasajeEmitido.getBus().getFecha()>=(new Date().getTime()+(60*60*24*1000))){
 
                         for (Cliente clientePasajeTest : pasaje.getClientes() ) {
+                          /*
+
+                          Todo cliente debe presentar identificación (RUT)
+                          para acceder a la reserva y compra de pasajes.
+
+                          */
                           boolean rutExiste = false;
                           for (Cliente clientePasajeEmitido :  pasajeEmitido.getClientes() ) {
                             if(clientePasajeEmitido.getRut()==clientePasajeTest.getRut()){
@@ -202,6 +210,7 @@ public class Empresa {
 
                           pasajeEmitido.pagarPasaje();
                           System.out.println(" Pasaje Pagado Con exito \n");
+                          //   • Una vez pagada la reserva se emite el pasaje con el nombre del cliente y acompañantes.
                           return pasajeEmitido;
 
                         }else{
@@ -214,7 +223,8 @@ public class Empresa {
                       }else{
 
                         System.out.println(" Fecha de pago no valida \n");
-
+                        // • Las reservas no pagadas, en el tiempo descrito en el punto 4,
+                        // serán anuladas de manera automática.
                         this.pasajesEmitidos.remove(indexPasaje);
 
                         return null;

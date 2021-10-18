@@ -13,6 +13,9 @@ public class Bus {
   private int asientosTotales = 40;
   private int asientosOcupados = 0;
   private String destino;
+
+  // las fecha se getionaran mediante timestamp para
+  // agilizar la comparacion temporal de objetos tipo Date
   private long fecha;
 
   public Bus(long fecha, String destino){
