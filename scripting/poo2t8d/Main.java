@@ -8,45 +8,52 @@ import Main.*;
 import java.util.*;
 import java.util.ArrayList;
 
-interface ComputerPart {
-   public void accept(ComputerPartVisitor computerPartVisitor);
+interface SchoolDepartment {
+   public void accept(SchoolDepartmentVisitor computerPartVisitor);
 }
 
-class Keyboard implements ComputerPart {
+class languageDepartment implements SchoolDepartment {
 
    @Override
-   public void accept(ComputerPartVisitor computerPartVisitor) {
+   public void accept(SchoolDepartmentVisitor computerPartVisitor) {
       computerPartVisitor.visit(this);
    }
 }
 
-class Monitor implements ComputerPart {
+class HistoryDepartment implements SchoolDepartment {
 
    @Override
-   public void accept(ComputerPartVisitor computerPartVisitor) {
+   public void accept(SchoolDepartmentVisitor computerPartVisitor) {
       computerPartVisitor.visit(this);
    }
 }
 
-class Mouse implements ComputerPart {
+class MathDepartment implements SchoolDepartment {
 
    @Override
-   public void accept(ComputerPartVisitor computerPartVisitor) {
+   public void accept(SchoolDepartmentVisitor computerPartVisitor) {
       computerPartVisitor.visit(this);
    }
 }
 
-class Computer implements ComputerPart {
 
-   ComputerPart[] parts;
 
-   public Computer(){
-      parts = new ComputerPart[] {new Mouse(), new Keyboard(), new Monitor()};
+
+
+
+
+
+class School implements SchoolDepartment {
+
+   SchoolDepartment[] parts;
+
+   public School(){
+      parts = new SchoolDepartment[] {new MathDepartment(), new languageDepartment(), new HistoryDepartment()};
    }
 
 
    @Override
-   public void accept(ComputerPartVisitor computerPartVisitor) {
+   public void accept(SchoolDepartmentVisitor computerPartVisitor) {
       for (int i = 0; i < parts.length; i++) {
          parts[i].accept(computerPartVisitor);
       }
@@ -54,33 +61,41 @@ class Computer implements ComputerPart {
    }
 }
 
-interface ComputerPartVisitor {
-	public void visit(Computer computer);
-	public void visit(Mouse mouse);
-	public void visit(Keyboard keyboard);
-	public void visit(Monitor monitor);
+
+
+
+
+interface SchoolDepartmentVisitor {
+	public void visit(School computer);
+	public void visit(MathDepartment mouse);
+	public void visit(languageDepartment keyboard);
+	public void visit(HistoryDepartment monitor);
 }
 
-class ComputerPartDisplayVisitor implements ComputerPartVisitor {
+
+
+
+
+class SchoolDepartmentDisplayVisitor implements SchoolDepartmentVisitor {
 
    @Override
-   public void visit(Computer computer) {
-      System.out.println("Displaying Computer.");
+   public void visit(School computer) {
+      System.out.println("Informe departamento Escuela.");
    }
 
    @Override
-   public void visit(Mouse mouse) {
-      System.out.println("Displaying Mouse.");
+   public void visit(MathDepartment mouse) {
+      System.out.println("Informe departamento Matematicas.");
    }
 
    @Override
-   public void visit(Keyboard keyboard) {
-      System.out.println("Displaying Keyboard.");
+   public void visit(languageDepartment keyboard) {
+      System.out.println("Informe departamento Lenguaje.");
    }
 
    @Override
-   public void visit(Monitor monitor) {
-      System.out.println("Displaying Monitor.");
+   public void visit(HistoryDepartment monitor) {
+      System.out.println("Informe departamento Historia.");
    }
 }
 
@@ -93,8 +108,8 @@ public class Main
 		System.out.println(" \n \n Main test -> \n");
 		System.out.println(" -------------------------------------------- \n");
 
-		ComputerPart computer = new Computer();
-    computer.accept(new ComputerPartDisplayVisitor());
+		SchoolDepartment computer = new School();
+    computer.accept(new SchoolDepartmentDisplayVisitor());
 
 
 	}
