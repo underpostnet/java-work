@@ -12,47 +12,47 @@ import java.util.ArrayList;
 // Java program to demonstrate working of
 // State Design Pattern
 
-interface MobileAlertState
+interface StudenCourseState
 {
-	public void alert(AlertStateContext ctx);
+	public void studentState(MonitorStudentState ctx);
 }
 
-class AlertStateContext
+class MonitorStudentState
 {
-	private MobileAlertState currentState;
+	private StudenCourseState currentState;
 
-	public AlertStateContext()
+	public MonitorStudentState()
 	{
-		currentState = new Vibration();
+		currentState = new Reprobate();
 	}
 
-	public void setState(MobileAlertState state)
+	public void setState(StudenCourseState state)
 	{
 		currentState = state;
 	}
 
-	public void alert()
+	public void studentState()
 	{
-		currentState.alert(this);
+		currentState.studentState(this);
 	}
 }
 
-class Vibration implements MobileAlertState
+class Reprobate implements StudenCourseState
 {
 	@Override
-	public void alert(AlertStateContext ctx)
+	public void studentState(MonitorStudentState ctx)
 	{
-		System.out.println("vibration...");
+		System.out.println("Alumno en estado de curso Reprobado");
 	}
 
 }
 
-class Silent implements MobileAlertState
+class Approved implements StudenCourseState
 {
 	@Override
-	public void alert(AlertStateContext ctx)
+	public void studentState(MonitorStudentState ctx)
 	{
-		System.out.println("silent...");
+		System.out.println("Alumno en estado de curso Aprobado");
 	}
 
 }
@@ -68,13 +68,13 @@ public class Main
 		System.out.println(" \n \n Main test -> \n");
 		System.out.println(" -------------------------------------------- \n");
 
-		AlertStateContext stateContext = new AlertStateContext();
-		stateContext.alert();
-		stateContext.alert();
-		stateContext.setState(new Silent());
-		stateContext.alert();
-		stateContext.alert();
-		stateContext.alert();		
+		MonitorStudentState stateContext = new MonitorStudentState();
+		stateContext.studentState();
+		stateContext.studentState();
+		stateContext.setState(new Approved());
+		stateContext.studentState();
+		stateContext.studentState();
+		stateContext.studentState();
 
 	}
 }
