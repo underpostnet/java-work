@@ -10,42 +10,42 @@ import java.util.ArrayList;
 
 
 
-class Life
+class Student
 {
-	private String time;
+	private String course;
 
-	public void set(String time)
+	public void set(String course)
 	{
-		System.out.println("Setting time to " + time);
-		this.time = time;
+		System.out.println("Setting course to " + course);
+		this.course = course;
 	}
 
 	public Memento saveToMemento()
 	{
-		System.out.println("Saving time to Memento");
-		return new Memento(time);
+		System.out.println("Saving course to Memento");
+		return new Memento(course);
 	}
 
 	public void restoreFromMemento(Memento memento)
 	{
-		time = memento.getSavedTime();
-		System.out.println("Time restored from Memento: " + time);
+		course = memento.getSavedCourse();
+		System.out.println("Course restored from Memento: " + course);
 	}
 
 }
 
 class Memento
 {
-  private final String time;
+  private final String course;
 
-  public Memento(String timeToSave)
+  public Memento(String courseToSave)
   {
-    time = timeToSave;
+    course = courseToSave;
   }
 
-  public String getSavedTime()
+  public String getSavedCourse()
   {
-    return time;
+    return course;
   }
 }
 
@@ -60,20 +60,20 @@ class Main
     System.out.println(" -------------------------------------------- \n");
 
 
-		List<Memento> savedTimes = new ArrayList<Memento>();
+		List<Memento> savedCourses = new ArrayList<Memento>();
 
-		Life life = new Life();
+		Student student = new Student();
 
-		//time travel and record the eras
-		life.set("1000 B.C.");
-		savedTimes.add(life.saveToMemento());
-		life.set("1000 A.D.");
-		savedTimes.add(life.saveToMemento());
-		life.set("2000 A.D.");
-		savedTimes.add(life.saveToMemento());
-		life.set("4000 A.D.");
+		//course travel and record the eras
+		student.set("1ro Basico");
+		savedCourses.add(student.saveToMemento());
+		student.set("2do Basico");
+		savedCourses.add(student.saveToMemento());
+		student.set("3ro Basico.");
+		savedCourses.add(student.saveToMemento());
+		student.set("4to Basico.");
 
-		life.restoreFromMemento(savedTimes.get(0));
+		student.restoreFromMemento(savedCourses.get(1));
 
 	}
 }
