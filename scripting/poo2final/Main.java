@@ -6,8 +6,7 @@ import Main.*;
 import java.util.*;
 import java.util.ArrayList;
 
-
-
+// ABSTRACT FACTORY
 
 interface Human {
 
@@ -62,7 +61,67 @@ class HumanFactory extends AbstractFactory {
    }
 }
 
+// FACADE
 
+interface Location {
+
+   String getDirection();
+
+}
+
+
+class Supplier implements Location {
+
+	 private String direction;
+
+	 public Supplier(String direction){
+		 this.direction = direction;
+	 }
+
+
+   @Override
+   public String getDirection() {
+      return this.direction;
+   }
+}
+
+class BranchOffice implements Location {
+
+	 private String direction;
+
+	 public BranchOffice(String direction){
+		 this.direction = direction;
+	 }
+
+
+   @Override
+   public String getDirection() {
+      return this.direction;
+   }
+}
+
+
+class FacadeLocationMaker {
+   private Location branchOffice;
+   private Location supplier;
+
+   public FacadeLocationMaker(String directionBranchOffice, String directionSupplier) {
+      this.branchOffice = new BranchOffice(directionBranchOffice);
+      this.supplier = new Supplier(directionSupplier);
+   }
+
+   public String getDirectionBranchOffice(){
+      return this.branchOffice.getDirection();
+   }
+
+   public String getDirectionSupplier(){
+      return this.supplier.getDirection();
+   }
+
+}
+
+
+// MAIN TEST
 
 public class Main {
 
@@ -86,9 +145,15 @@ public class Main {
 			);
 			System.out.println(employeeA.getRut());
 
+			// cada sucursal va asociado al menos a 1 proeveedor
 
+			FacadeLocationMaker locationMaker = new FacadeLocationMaker(
+				"Los liras 432",
+				"Alvarez 267"
+			);
 
-
+			 System.out.println(locationMaker.getDirectionBranchOffice());
+			 System.out.println(locationMaker.getDirectionSupplier());
 
 
   }

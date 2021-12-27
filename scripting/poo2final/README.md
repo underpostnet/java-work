@@ -5,11 +5,12 @@ https://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm
 -> buscar un estrucutural simple
 
 
+
       -> SUPERMERCADO San Diego Supermercados C.A
       -> inventario suma(nomina) venta registro
 
 
-      PROEVEDOR
+      PROEVEDOR  | locales fisicos
 
       código del proveedor, nombre
       proveedor, dirección, estado,
@@ -17,10 +18,17 @@ https://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm
 
       -->
 
-      SUCURSAL
+      SUCURSAL  | locales fisicos
 
       dirección, región, gerente, cantidad de empleados, un
       identificador de sucursal y teléfono.
+
+
+
+
+
+
+
 
       -->
 
