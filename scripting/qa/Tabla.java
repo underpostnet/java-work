@@ -1,8 +1,8 @@
-import java.io.*;
+import Tabla.*;
 
 class Tabla {
     Equipo[] arreglo;
-    Equipo[] XXXXXX;
+    Equipo[] varTab;
 
     Tabla() {
         seleccion(arreglo);
@@ -29,23 +29,19 @@ class Tabla {
 
     void creatxt() {
         File archivo = new File("Marcador.txt");
-        FileWriter escribeArchivo = new FileWriter(archivo);
-        for (int i = 0; i < arreglo.length; i++) {
-            escribeArchivo.write("Posicion " + (i + 1) + ":\n");
-            escribeArchivo.write(arreglo[i].nombre + "\n");
-            escribeArchivo.write(arreglo[i].ptjtotal + " ptos" + "\n");
+        try (FileWriter escribeArchivo = new FileWriter(archivo)) {
+            for (int i = 0; i < arreglo.length; i++) {
+                escribeArchivo.write("Posicion " + (i + 1) + ":\n");
+                escribeArchivo.write(arreglo[i].nombre + "\n");
+                escribeArchivo.write(arreglo[i].ptjtotal + " ptos" + "\n");
+            }
+
+        } catch (Exception e) {
+            escribeArchivo.close();
+        } finally {
+            escribeArchivo.close();
         }
-        escribeArchivo.close();
+
     }
 
-    void creatxt() {
-        File archivo = new File("Marcador.txt");
-        FileWriter escribeArchivo = new FileWriter(archivo);
-        for (int i = 0; i < arreglo.length; i++) {
-            escribeArchivo.write("Posicion " + (i + 1) + ":\n");
-            escribeArchivo.write(arreglo[i].nombre + "\n");
-            escribeArchivo.write(arreglo[i].ptjtotal + " ptos" + "\n");
-        }
-        escribeArchivo.close();
-    }
 }
