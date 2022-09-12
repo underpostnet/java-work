@@ -11,15 +11,15 @@
 <properties>
      <maven.compiler.source>1.8</maven.compiler.source>
      <maven.compiler.target>1.8</maven.compiler.target>
+     <junit-jupiter.version>5.5.2</junit-jupiter.version>
 </properties>
-
 ```
 
 
 - run unit test
 
 
-`mv package`
+`mvn package`
 
 
 - run integrated test 
