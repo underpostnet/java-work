@@ -84,4 +84,20 @@ public class Form {
 
     }
 
+    public String getDate() {
+        return this.date;
+    };
+
+    public String getType() {
+        return this.type;
+    };
+
+    public String getInfo() {
+        return this.info;
+    };
+
+    public boolean getValidInfo() {
+        return this.info != "Opción invalida";
+    }
+
 }

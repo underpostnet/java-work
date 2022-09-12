@@ -15,11 +15,13 @@
 </properties>
 ```
 
+`mvn package`
+
 
 - run unit test
 
 
-`mvn package`
+`mvn test`
 
 
 - run integrated test 
