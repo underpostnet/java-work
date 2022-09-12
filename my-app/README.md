@@ -1,4 +1,4 @@
-- creaite project
+- create project
 
 
 `mvn archetype:generate -DgroupId=tarea4 -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
