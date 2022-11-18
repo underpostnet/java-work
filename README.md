@@ -14,7 +14,7 @@
 `mvn clean install`
 
 
-`java -cp target/my-app-1.0-SNAPSHOT.jar com.[NAME-APP].app.App`
+`java -cp target/my-app-1.0-SNAPSHOT.jar [NAME-APP].App`
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-- Default life cycle phases in maven
+### Default life cycle phases in maven
 
 
 validate - validate the project is correct and all necessary information is available
